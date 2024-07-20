@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Static Template</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Películas</h1>
+      <hr />
+
+      <form v-for="movie in movies">
+        <p>¿Cuántos boletos para {{movie.name}}?</p>
+
+        <div>
+          <button type="button" v-on:click="movie.quantity -= 1">
+            -
+          </button>
+
+          <span v-text="movie.quantity"></span>
+
+          <button type="button" v-on:click="movie.quantity += 1">
+            +
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <script src="https://unpkg.com/vue@3.0.5/dist/vue.global.js"></script>
+    <script>
+      const { createApp } = Vue;
+
+      const app = createApp({
+        data() {
+          return {
+            movies: [
+              {
+                name: 'Avengers',
+                available: 3,
+                quantity: 0,
+              },
+              {
+                name: 'Terminator',
+                available: 5,
+                quantity: 0,
+              },
+            ],
+          };
+        },
+      });
+
+      app.mount('#app');
+    </script>
+  </body>
+</html>
